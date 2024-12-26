@@ -1,6 +1,7 @@
 # Math_QA
 
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg?style=flat&logo=python&logoColor=white)](https://www.python.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.68.0%2B-009688.svg?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![LangChain](https://img.shields.io/badge/🦜_LangChain-Latest-2F6FD2.svg?style=flat)](https://www.langchain.com)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat)](https://github.com/psf/black)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat)](https://opensource.org/licenses/MIT)
