@@ -1,7 +1,7 @@
 # Math_QA
 
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg?style=flat&logo=python&logoColor=white)](https://www.python.org)
-[![Flask](https://img.shields.io/badge/Flask-3.0.3-lightgrey.svg)](https://flask.palletsprojects.com/)
+[![Flask](https://img.shields.io/badge/Flask-3.0.0-lightgrey.svg)](https://flask.palletsprojects.com/)
 [![LangChain](https://img.shields.io/badge/🦜_LangChain-Latest-2F6FD2.svg?style=flat)](https://www.langchain.com)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat)](https://github.com/psf/black)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat)](https://opensource.org/licenses/MIT)
@@ -12,10 +12,9 @@
   <img src="https://streamlit.io/images/brand/streamlit-logo-primary-colormark-darktext.png" alt="Streamlit" width="300"/>
 </div>
 
+## Table of Contents
 
-## Table of  Contents
-
-- [Overview](#Overview)
+- [Overview](#overview)
 - [Features](#features)
 - [Project Structure](#project-structure)
 - [Requirements](#requirements)
@@ -23,196 +22,139 @@
 - [Configuration](#configuration)
 - [Usage](#usage)
 - [API Documentation](#api-documentation)
-- [Deployment](#deployment)
 - [Contributing](#contributing)
 - [License](#license)
 
-
 ## Overview
 
-Mathematical Question answering is a dual-interface application that provides you a streamlit web based app and api as a service with problem solving capability.It leverages the Groq API and Langchain framework to provide the reasoning capabilities.
+Math_QA is a dual-interface application that provides both a web-based UI and API service for solving mathematical and logical problems. It leverages the Groq API and LangChain framework to provide advanced reasoning capabilities.
 
 The project consists of two main components:
-1. A Flask api-based REST APIs (`app.py`)
-2. A streamit-based web app (`st_app.py`)
-
+1. A Flask-based REST API (`app.py`) with rate limiting and robust error handling
+2. A Streamlit-based web application (`st_app.py`) with an interactive user interface
 
 ## Features
 
-- 🧮 Math Solver
-  - Math Problem Solver
-  - Logic and Reasoning
+### Core Features
+- 🧮 **Math Problem Solving**
+  - Solves complex mathematical equations
+  - Provides step-by-step explanations
+  - Handles word problems
+  
+- 🤔 **Logic and Reasoning**
+  - Analyzes logical problems
+  - Provides detailed explanations
+  - Uses Wikipedia for additional context
 
-- 🔧 Technical Features
-  - RESTful API with FlaskAPI
-  - Interactive web UI with Streamlit
-
-- 🔒 Security Features
+### Technical Features
+- 🔒 **Security**
   - API key authentication
+  - Rate limiting (10 requests/minute)
   - Input validation
-  - CORS support
-  - SSL/TLS support
-
+  
+- 🛠️ **Robustness**
+  - Comprehensive error handling
+  - Request validation
+  - Detailed error messages
 
 ## Project Structure
-
 ```
 math_qa/
-├── app.py                   # Flask API application
-├── st_app.py                # Streamlit Web-application
-├── requirements.txt         # Project Dependencies
-├── .env                     # environment file
-├── .gitignore               # Git ignore file   
-└── Readme.md                # Readme file
+├── app.py              # Flask API implementation
+├── st_app.py          # Streamlit web interface
+├── requirements.txt   # Project dependencies
+└── README.md         # Project documentation
 ```
 
-
 ## Requirements
-
-- Python 3.8 +
-- Groq API key ([Get here](https://groq.com))
-- Required packages in requirements.txt
-
+- Python 3.8+
+- Groq API key
+- Dependencies listed in requirements.txt
 
 ## Installation
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/math_qa.git
-   cd math_qa
-   ```
+```bash
+git clone https://github.com/yourusername/math_qa.git
+cd math_qa
+```
 
-2. Create and activate virtual environment:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # Unix/macOS
-   # or
-   .\venv\Scripts\activate  # Windows
-   ```
+2. Create and activate a virtual environment:
+```bash
+python -m venv env
+source env/bin/activate  # On Windows: env\Scripts\activate
+```
 
 3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. Copy environment variables:
-   ```bash
-   cp .env.example .env
-   ```
-
-5. Update `.env` with your credentials:
-   ```env
-   GROQ_API_KEY=your_api_key_here
-   ```
-
+```bash
+pip install -r requirements.txt
+```
 
 ## Configuration
 
-The application can be configured using environment variables:
+1. Get a Groq API key from [Groq's website](https://www.groq.com)
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| GROQ_API_KEY | Groq API Key | Required |
+2. For the Flask API:
+   - Set your Groq API key in the request header or query parameter
 
+3. For the Streamlit app:
+   - Enter your Groq API key in the sidebar
 
 ## Usage
 
-### Flask API Application
-1. Start the API server:
-   ```bash
-   python3 app.py
-   ```
+### Running the Flask API
+```bash
+python app.py
+```
+The API will be available at `http://localhost:5000`
 
-2. Access endpoints:
-   - API: http://localhost:5000
-   - Health check: http://localhost:8000/health
-   - Summarization endpoint: http://localhost:8000/math_qa
-
-### Streamlit Application
-
-1. Start the web interface:
-   ```bash
-   streamlit run streamlit_app.py
-   ```
-
-2. Open in browser:
-   - http://localhost:8501
-
+### Running the Streamlit App
+```bash
+streamlit run st_app.py
+```
+The web interface will be available at `http://localhost:8501`
 
 ## API Documentation
 
-### Endpoints
+### POST /solve_question
+Solves a mathematical or logical question.
 
-#### POST /summarize
-Generates content summary.
-
-Request:
+**Request**
 ```json
 {
-  "question": "string"
+  "question": "What is the sum of 123 and 456?"
 }
 ```
 
-Response:
+**Parameters**
+- `groq_api_key` (query parameter): Your Groq API key
+
+**Response**
 ```json
 {
-  "answer": "string"
+  "answer": "The sum of 123 and 456 is 579..."
 }
 ```
 
+### GET /health
+Health check endpoint.
 
-## Deployment
-
-### Docker Deployment
-
-1. Build image:
-   ```bash
-   docker build -t math_qa .
-   ```
-
-2. Run container:
-   ```bash
-   docker run -p 8000:8000 mqth_qa
-   ```
-
-### Cloud Deployment
-
-Deployment guides available for:
-- AWS 
-- Google Cloud 
-- Azure
-- IBM cloud
-
-See official deployment documentation for details.
-
+**Response**
+```json
+{
+  "status": "healthy",
+  "message": "Welcome to the Text to Math Problem Solver API"
+}
+```
 
 ## Contributing
 
 1. Fork the repository
-2. Create a feature branch:
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-3. Commit changes:
-   ```bash
-   git commit -m 'Add some feature'
-   ```
-4. Push to the branch:
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-5. Submit a pull request
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and development process.
-
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-<div align="center">
-  <p>Made with FlaskAPI, Streamlit, and LangChain</p>
-  <p>© 2024 CR Teja Vardhan Reddy. All rights reserved.</p>
-</div>
+This project is licensed under the MIT License - see the LICENSE file for details.
