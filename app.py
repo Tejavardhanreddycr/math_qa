@@ -24,6 +24,7 @@ def solve_question():
 
     # Initialize LLM
     llm = ChatGroq(model="Gemma2-9b-It", groq_api_key=groq_api_key)
+
     # Initializing tools
     wikipedia_wrapper = WikipediaAPIWrapper()
     wikipedia_tool = Tool(
