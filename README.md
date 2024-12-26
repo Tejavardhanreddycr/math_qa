@@ -1,13 +1,13 @@
 # Math_QA
 
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg?style=flat&logo=python&logoColor=white)](https://www.python.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.68.0%2B-009688.svg?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![Flask](https://img.shields.io/badge/Flask-3.0.3-lightgrey.svg)](https://flask.palletsprojects.com/)
 [![LangChain](https://img.shields.io/badge/🦜_LangChain-Latest-2F6FD2.svg?style=flat)](https://www.langchain.com)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat)](https://github.com/psf/black)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat)](https://opensource.org/licenses/MIT)
 
 <div align="center">
-  <img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI" width="300"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Flask_logo.svg" alt="FlaskAPI" width="300"/>
   <br/>
   <img src="https://streamlit.io/images/brand/streamlit-logo-primary-colormark-darktext.png" alt="Streamlit" width="300"/>
 </div>
@@ -20,6 +20,12 @@
 - [Project Structure](#project-structure)
 - [Requirements](#requirements)
 - [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [API Documentation](#api-documentation)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [License](#license)
 
 
 ## Overview
@@ -27,7 +33,7 @@
 Mathematical Question answering is a dual-interface application that provides you a streamlit web based app and api as a service with problem solving capability.It leverages the Groq API and Langchain framework to provide the reasoning capabilities.
 
 The project consists of two main components:
-1. A Fast api-based REST Apis (`app.py`)
+1. A Flask api-based REST APIs (`app.py`)
 2. A streamit-based web app (`st_app.py`)
 
 
@@ -38,7 +44,7 @@ The project consists of two main components:
   - Logic and Reasoning
 
 - 🔧 Technical Features
-  - RESTful API with FastAPI
+  - RESTful API with FlaskAPI
   - Interactive web UI with Streamlit
 
 - 🔒 Security Features
@@ -52,7 +58,7 @@ The project consists of two main components:
 
 ```
 math_qa/
-├── app.py                   # Fast API application
+├── app.py                   # Flask API application
 ├── st_app.py                # Streamlit Web-application
 ├── requirements.txt         # Project Dependencies
 ├── .env                     # environment file
@@ -100,7 +106,7 @@ math_qa/
    ```
 
 
-## Configurationn
+## Configuration
 
 The application can be configured using environment variables:
 
@@ -111,14 +117,14 @@ The application can be configured using environment variables:
 
 ## Usage
 
-## Fast API Application
+### Flask API Application
 1. Start the API server:
    ```bash
-   uvicorn app:app --reload --port 8000
+   python3 app.py
    ```
 
 2. Access endpoints:
-   - API documentation: http://localhost:8000/docs
+   - API: http://localhost:5000
    - Health check: http://localhost:8000/health
    - Summarization endpoint: http://localhost:8000/math_qa
 
@@ -143,7 +149,6 @@ Generates content summary.
 Request:
 ```json
 {
-  "groq_api_key": "string",
   "question": "string"
 }
 ```
@@ -208,6 +213,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 <div align="center">
-  <p>Made with FastAPI, Streamlit, and LangChain</p>
+  <p>Made with FlaskAPI, Streamlit, and LangChain</p>
   <p>© 2024 CR Teja Vardhan Reddy. All rights reserved.</p>
 </div>
